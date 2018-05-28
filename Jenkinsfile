@@ -17,12 +17,12 @@ pipeline {
             }
         }
         stage('test') {
-//            agent {
-//                docker {
-//                    image 'python'
-//                    //args '-u root:sudo'
-//                }
-//            }
+            agent {
+                docker {
+                    image 'python'
+                    args '-u root:sudo'
+                }
+            }
             steps {
                 sh 'echo test'
                 sh 'id'
