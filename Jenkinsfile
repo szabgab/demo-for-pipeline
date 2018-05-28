@@ -21,4 +21,13 @@ pipeline {
             }
         }
     }
+    post {
+        cleanup {
+            sh 'id'
+            sh 'rm -rf .pytest_cache/'
+            sh 'rm -rf __pycache__/'
+            sh 'rm -rf tests/__pycache__/'
+            sh 'rm -f *.pyc'
+        }
+    }
 }

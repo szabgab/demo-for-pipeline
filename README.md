@@ -53,9 +53,6 @@ ln -s /home/gabor/work/demo-for-pipeline/uwsgi/demo.ini /etc/uwsgi/apps-enabled/
             sh 'id'
             archiveArtifacts artifacts: '*.gz'
             junit 'test-results/*.xml'
-            sh 'rm -rf .pytest_cache/'
-            sh 'rm -rf __pycache__/'
-            sh 'rm -rf tests/__pycache__/'
         }
     }
 
