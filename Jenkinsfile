@@ -23,13 +23,12 @@ pipeline {
             }
         }
         stage('release') {
-            node('main') {
-                steps {
-                    sh 'id'
-                    sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
-                    sh 'echo $DATE'
-                    sh 'tar czf release-$DATE-$GIT_COMMIT.gz demo.py templates/'
-                }
+            agent any
+            steps {
+                sh 'id'
+                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
+                sh 'echo $DATE'
+                sh 'tar czf release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
     }
