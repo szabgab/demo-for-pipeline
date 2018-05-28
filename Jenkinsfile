@@ -13,6 +13,7 @@ pipeline {
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
                 sh 'pip install -r requirements.txt'
+                sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
         }
     }
