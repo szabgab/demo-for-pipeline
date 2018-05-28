@@ -16,4 +16,13 @@ pipeline {
             }
         }
     }
+    stages {
+        stage('release') {
+            steps {
+                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
+                sh 'echo $DATE'
+                sh 'tar czf release-$DATE-$GIT_COMMIT.gz demo.py templates/'
+            }
+        }
+    }
 }
