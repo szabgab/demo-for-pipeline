@@ -19,7 +19,7 @@ pipeline {
         }
         stage('testing') {
             steps {
-                sh 'pytest --junitxml=../demo-for-pipelines-test-results/$BUILD_NUMBER.xml'
+                sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
         }
         stage('release') {
@@ -31,8 +31,10 @@ pipeline {
         }
         stage('deploy') {
             agent none
+            agent { label 'labelName' }
             steps {
                 sh 'echo deploy'
+                sh 'id'
                 sh 'cd /home/gabor/work/demo-for-pipeline'
                 sh '/usr/bin/git pull'
                 sh 'sudo /usr/sbin/service uwsgi reload'
@@ -41,8 +43,9 @@ pipeline {
     }
     post {
         always {
+            sh 'id'
             archiveArtifacts artifacts: '*.gz'
-            junit '../demo-for-pipelines-test-results/*.xml'
+            junit 'test-results/*.xml'
             sh 'rm -rf .pytest_cache/'
             sh 'rm -rf __pycache__/'
             sh 'rm -rf tests/__pycache__/'
