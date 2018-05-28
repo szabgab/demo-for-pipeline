@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'uptime'
+                // sh 'uptime'
                 sh 'id'
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
