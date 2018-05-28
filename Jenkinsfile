@@ -32,7 +32,6 @@ pipeline {
             }
         }
     }
-/*
     post {
         always {
             sh 'id'
@@ -47,5 +46,4 @@ pipeline {
             sh 'rm -f *.pyc'
         }
     }
-*/
 }
