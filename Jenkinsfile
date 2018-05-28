@@ -27,10 +27,13 @@ pipeline {
                 sh 'tar czf release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
-    }
-    post {
-        always {
-            junit 'test-results/*.xml'
+        stage('deploy') {
+            steps {
+                sh 'echo deploy'
+                sh 'cd /home/gabor/work/demo-for-pipeline'
+                sh '/usr/bin/git pull'
+                sh 'sudo /usr/sbin/service uwsgi reload'
+            }
         }
     }
 }
