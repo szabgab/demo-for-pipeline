@@ -13,6 +13,10 @@ pipeline {
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
                 sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('testing') {
+            steps {
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
         }
@@ -22,6 +26,11 @@ pipeline {
                 sh 'echo $DATE'
                 sh 'tar czf release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
+        }
+    }
+    post {
+        always {
+            junit 'test-results/*.xml'
         }
     }
 }
