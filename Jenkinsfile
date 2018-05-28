@@ -1,11 +1,19 @@
 pipeline {
     agent { label 'master' }
     stages {
+        stage('setup') {
+            steps {
+                sh 'echo setup'
+                sh 'id'
+                sh 'uname -a'
+                sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
+            }
+        }
         stage('build') {
             agent {
                 docker {
                     image 'python'
-                    //args '-u root:sudo'
+                    args '-u root:sudo'
                 }
             }
             steps {
@@ -14,6 +22,7 @@ pipeline {
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
                 sh 'cat /proc/1/cgroup'
+                sh 'ls -al'
             }
         }
         stage('test') {
