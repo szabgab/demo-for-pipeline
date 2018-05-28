@@ -15,7 +15,7 @@ pipeline {
                 sh 'pip install -r requirements.txt'
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
-        },
+        }
         stage('release') {
             steps {
                 sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
