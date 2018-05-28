@@ -42,6 +42,8 @@ pipeline {
         always {
             archiveArtifacts artifacts: '*.gz'
             junit 'test-results/*.xml'
+            sh 'rm -rf .pytest_cache/'
+            sh 'rm -rf __pycache__/'
         }
     }
 }
