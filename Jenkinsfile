@@ -13,6 +13,7 @@ pipeline {
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
                 sh 'pip install -r requirements.txt'
+                sh 'rm -rf .pytest_cache/'
             }
         }
         stage('testing') {
@@ -34,6 +35,12 @@ pipeline {
                 sh '/usr/bin/git pull'
                 sh 'sudo /usr/sbin/service uwsgi reload'
             }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: '*.gz'
+            junit 'test-results/*.xml'
         }
     }
 }
