@@ -30,7 +30,6 @@ pipeline {
             }
         }
         stage('deploy') {
-            agent none
             agent { label 'labelName' }
             steps {
                 sh 'echo deploy'
