@@ -14,6 +14,7 @@ pipeline {
                 sh '/usr/bin/python --version'
                 sh 'pip install -r requirements.txt'
                 sh 'rm -rf .pytest_cache/'
+                sh 'rm -rf __pycache__/'
             }
         }
         stage('testing') {
