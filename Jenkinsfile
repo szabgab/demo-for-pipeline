@@ -20,6 +20,8 @@ pipeline {
             steps {
                 sh 'echo build'
                 sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
+                sh 'ls -al'
+                sh 'ls -al test-results'
                 sh 'touch test-results/1.xml'
                 sh 'id'
                 sh 'uname -a'
