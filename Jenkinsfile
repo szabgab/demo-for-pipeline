@@ -19,7 +19,7 @@ pipeline {
         }
         stage('testing') {
             steps {
-                sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
+                sh 'pytest --junitxml=../demo-for-pipelines-test-results/$BUILD_NUMBER.xml'
             }
         }
         stage('release') {
@@ -41,9 +41,10 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: '*.gz'
-            junit 'test-results/*.xml'
+            junit '../demo-for-pipelines-test-results/*.xml'
             sh 'rm -rf .pytest_cache/'
             sh 'rm -rf __pycache__/'
+            sh 'rm -rf tests/__pycache__/'
         }
     }
 }
