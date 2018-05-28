@@ -1,4 +1,4 @@
-# Demo flask application
+# Demo application for Jenkins Pipelines
 
 To be used for the Jenkins demo.
 
