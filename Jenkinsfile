@@ -14,7 +14,7 @@ pipeline {
             agent {
                 docker {
                     image 'python'
-                    args '-u root:sudo -v /var/lib/jenkins/store/demo-for-pipeline/:/trd'
+                    args '-u root:sudo -v /var/lib/jenkins/store/demo-for-pipeline/:`pwd`/trd'
                 }
             }
             steps {
@@ -24,7 +24,8 @@ pipeline {
                 sh '/usr/bin/python --version'
                 sh 'cat /proc/1/cgroup'
                 sh 'ls -al'
-                sh 'ls -al /trd'
+                sh 'pwd'
+                sh 'ls -al trd'
             }
         }
         stage('test') {
