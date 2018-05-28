@@ -1,13 +1,13 @@
 pipeline {
     agent none
     stages {
-        agent {
-            docker {
-                image 'python'
-                args '-u root:sudo'
-            }
-        }
         stage('build') {
+            agent {
+                docker {
+                    image 'python'
+                    args '-u root:sudo'
+                }
+            }
             steps {
                 sh 'uptime'
                 sh 'id'
