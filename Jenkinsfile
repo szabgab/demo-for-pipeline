@@ -19,7 +19,7 @@ pipeline {
                 sh 'rm -rf tests/__pycache__/'
                 sh 'rm -f *.pyc'
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
-                sh 'chown -R jenkins.jenkins test-results'
+                // sh 'chown -R jenkins.jenkins test-results'
             }
         }
         stage('release') {
