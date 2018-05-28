@@ -30,6 +30,7 @@ pipeline {
             }
         }
         stage('deploy') {
+            agent none
             steps {
                 sh 'echo deploy'
                 sh 'cd /home/gabor/work/demo-for-pipeline'
@@ -39,7 +40,6 @@ pipeline {
         }
     }
     post {
-        agent none
         always {
             archiveArtifacts artifacts: '*.gz'
             junit '../demo-for-pipelines-test-results/*.xml'
