@@ -19,4 +19,5 @@ pipeline {
                 sh 'rm *.pyc'
             }
         }
+    }
 }
