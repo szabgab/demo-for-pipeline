@@ -30,6 +30,7 @@ apt-get install uwsgi  uwsgi-plugin-python
 ln -s /home/gabor/work/demo-for-pipeline/uwsgi/demo.ini /etc/uwsgi/apps-enabled/
 ```
 
+
         stage('deploy') {
             agent { label 'labelName' }
             steps {
