@@ -1,15 +1,6 @@
 pipeline {
     agent { label 'master' }
     stages {
-        stage('setup') {
-            steps {
-                sh 'echo setup'
-                sh 'id'
-                sh 'uname -a'
-//                sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
-//                sh 'ls -al'
-            }
-        }
         stage('build') {
             agent {
                 docker {
@@ -22,15 +13,11 @@ pipeline {
                 sh 'ln -s /store/test-results'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
-                sh 'touch test-results/1.xml'
-                sh 'ls -al test-results/'
                 sh 'id'
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
-                sh 'cat /proc/1/cgroup'
-                sh 'ls -al'
-                sh 'pwd'
-                sh 'ls -al trd'
+                sh 'pip install -r requirements.txt'
+                sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
             post {
                 always {
@@ -38,32 +25,9 @@ pipeline {
                     sh 'id'
                     sh 'uname -a'
                     sh 'ls -al'
-                    sh 'cat /proc/1/cgroup'
-                }
-            }
-        }
-        stage('test') {
-            agent {
-                docker {
-                    image 'python'
-                    args '-u root:sudo'
-                }
-            }
-            steps {
-                sh 'echo test'
-                sh 'ls -al'
-                sh 'id'
-                sh 'uname -a'
-                sh '/usr/bin/python --version'
-                sh 'cat /proc/1/cgroup'
-            }
-            post {
-                always {
-                    sh 'echo always after test'
+                    junit 'test-results/*.xml'
+                    sh 'git clean -fdx'
                     sh 'ls -al'
-                    sh 'id'
-                    sh 'uname -a'
-                    sh 'cat /proc/1/cgroup'
                 }
             }
         }
@@ -73,7 +37,6 @@ pipeline {
             sh 'echo always'
             sh 'id'
             sh 'uname -a'
-            sh 'cat /proc/1/cgroup'
         }
         changed {
             sh 'echo changed'
