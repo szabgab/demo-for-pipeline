@@ -39,6 +39,7 @@ pipeline {
         }
     }
     post {
+        agent none
         always {
             archiveArtifacts artifacts: '*.gz'
             junit '../demo-for-pipelines-test-results/*.xml'
