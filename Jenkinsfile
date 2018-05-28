@@ -30,6 +30,11 @@ pipeline {
         }
     }
     post {
+        always {
+            sh 'id'
+            archiveArtifacts artifacts: '*.gz'
+            junit 'test-results/*.xml'
+        }
         cleanup {
             sh 'id'
             sh 'rm -rf .pytest_cache/'

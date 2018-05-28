@@ -43,10 +43,5 @@ ln -s /home/gabor/work/demo-for-pipeline/uwsgi/demo.ini /etc/uwsgi/apps-enabled/
         }
     }
     post {
-        always {
-            sh 'id'
-            archiveArtifacts artifacts: '*.gz'
-            junit 'test-results/*.xml'
-        }
     }
 
