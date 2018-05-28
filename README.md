@@ -32,7 +32,6 @@ ln -s /home/gabor/work/demo-for-pipeline/uwsgi/demo.ini /etc/uwsgi/apps-enabled/
 
         stage('testing') {
             steps {
-                sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
             }
         }
         stage('release') {
