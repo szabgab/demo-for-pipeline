@@ -11,7 +11,7 @@ pipeline {
                 sh 'id'
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
-                sh 'apt-get install virtualenv'
+                sh 'sudo apt-get install virtualenv'
                 sh 'pip install -r requirements.txt'
                 sh 'rm -rf .pytest_cache/'
                 sh 'rm -rf __pycache__/'
