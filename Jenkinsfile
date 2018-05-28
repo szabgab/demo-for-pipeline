@@ -1,11 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image 'python'
-            args '-u root:sudo'
-        }
-    }
+    agent none
     stages {
+        agent {
+            docker {
+                image 'python'
+                args '-u root:sudo'
+            }
+        }
         stage('build') {
             steps {
                 sh 'uptime'
@@ -18,6 +19,7 @@ pipeline {
                 sh 'rm -rf tests/__pycache__/'
                 sh 'rm -f *.pyc'
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
+                sh 'chown -R jenkins.jenkins test-results'
             }
         }
         stage('release') {
