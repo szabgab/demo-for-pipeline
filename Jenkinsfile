@@ -2,17 +2,31 @@ pipeline {
     agent { label 'master' }
     stages {
         stage('build') {
-            // agent {
-            //     docker {
-            //         image 'python'
-            //         // args '-u root:sudo'
-            //     }
-            // }
+            agent {
+                docker {
+                    image 'python'
+                    //args '-u root:sudo'
+                }
+            }
             steps {
-                sh 'uptime'
+                sh 'echo build'
                 sh 'id'
                 sh 'uname -a'
-                sh 'hostname'
+                sh '/usr/bin/python --version'
+                sh 'cat /proc/1/cgroup'
+            }
+        }
+        stage('test') {
+            agent {
+                docker {
+                    image 'python'
+                    //args '-u root:sudo'
+                }
+            }
+            steps {
+                sh 'echo build'
+                sh 'id'
+                sh 'uname -a'
                 sh '/usr/bin/python --version'
                 sh 'cat /proc/1/cgroup'
             }
@@ -22,18 +36,18 @@ pipeline {
         always {
             sh 'echo always'
             sh 'id'
-            sh 'hostname'
+            sh 'uname -a'
             sh 'cat /proc/1/cgroup'
         }
         changed {
             sh 'echo changed'
-            sh 'hostname'
             sh 'id'
+            sh 'uname -a'
         }
         cleanup {
             sh 'echo cleanup'
-            sh 'hostname'
             sh 'id'
+            sh 'uname -a'
         }
     }
 }
