@@ -6,8 +6,8 @@ pipeline {
                 sh 'echo setup'
                 sh 'id'
                 sh 'uname -a'
-                sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
-                sh 'ls -al'
+//                sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
+//                sh 'ls -al'
             }
         }
         stage('build') {
@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                 sh 'echo build'
-                sh 'ln -s /var/lib/jenkins/store/demo-for-pipeline/test-results'
+                sh 'ln -s /store/test-results'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
                 sh 'touch test-results/1.xml'
