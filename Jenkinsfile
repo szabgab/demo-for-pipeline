@@ -19,21 +19,23 @@ pipeline {
         }
     }
     post {
-        always {
-            sh 'echo always'
-            sh 'id'
-            sh 'hostname'
-            sh 'cat /proc/1/cgroup'
-        }
-        changed {
-            sh 'echo changed'
-            sh 'hostname'
-            sh 'id'
-        }
-        cleanup {
-            sh 'echo cleanup'
-            sh 'hostname'
-            sh 'id'
+        node {
+            always {
+                sh 'echo always'
+                sh 'id'
+                sh 'hostname'
+                sh 'cat /proc/1/cgroup'
+            }
+            changed {
+                sh 'echo changed'
+                sh 'hostname'
+                sh 'id'
+            }
+            cleanup {
+                sh 'echo cleanup'
+                sh 'hostname'
+                sh 'id'
+            }
         }
     }
 }
