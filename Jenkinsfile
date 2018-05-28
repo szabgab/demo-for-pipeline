@@ -25,7 +25,7 @@ pipeline {
                     sh 'id'
                     sh 'uname -a'
                     sh 'ls -al'
-                    junit 'test-results/*.xml'
+                    junit './test-results/*.xml'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
