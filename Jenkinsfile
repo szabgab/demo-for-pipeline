@@ -29,14 +29,14 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -al trd'
             }
-        }
-        post {
-            always {
-                sh 'echo always after build'
-                sh 'id'
-                sh 'uname -a'
-                sh 'ls -al'
-                sh 'cat /proc/1/cgroup'
+            post {
+                always {
+                    sh 'echo always after build'
+                    sh 'id'
+                    sh 'uname -a'
+                    sh 'ls -al'
+                    sh 'cat /proc/1/cgroup'
+                }
             }
         }
         stage('test') {
@@ -54,14 +54,14 @@ pipeline {
                 sh '/usr/bin/python --version'
                 sh 'cat /proc/1/cgroup'
             }
-        }
-        post {
-            always {
-                sh 'echo always after test'
-                sh 'ls -al'
-                sh 'id'
-                sh 'uname -a'
-                sh 'cat /proc/1/cgroup'
+            post {
+                always {
+                    sh 'echo always after test'
+                    sh 'ls -al'
+                    sh 'id'
+                    sh 'uname -a'
+                    sh 'cat /proc/1/cgroup'
+                }
             }
         }
     }
