@@ -13,22 +13,26 @@ pipeline {
                 sh 'uname -a'
                 sh 'hostname'
                 sh '/usr/bin/python --version'
+                sh 'cat /proc/1/cgroup'
             }
         }
     }
     post {
         always {
-          node('always_node_label') {
+            sh 'echo always'
             sh 'id'
             sh 'hostname'
-          }
+            sh 'cat /proc/1/cgroup'
+        }
+        changed {
+            sh 'echo changed'
+            sh 'hostname'
+            sh 'id'
         }
         cleanup {
-            node('cleanup_node_label') {
-                sh 'echo cleanup'
-                sh 'hostname'
-                sh 'id'
-            }
+            sh 'echo cleanup'
+            sh 'hostname'
+            sh 'id'
         }
     }
 }
