@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python'
+            args '-u root:sudo'
         }
     }
     stages {
@@ -11,7 +12,7 @@ pipeline {
                 sh 'id'
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
-                sh 'sudo pip install -r requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
     }
