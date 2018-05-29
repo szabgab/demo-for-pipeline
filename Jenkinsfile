@@ -19,7 +19,7 @@ pipeline {
         stage('test') {
             agent {
                 docker {
-                    image 'python'
+                    image 'ubuntu:latest'
                 }
             }
             steps {
@@ -31,7 +31,7 @@ pipeline {
             post {
                 always {
                     sh 'echo always after test'
-                    sh 'hostname'
+                    sh 'hostname'  // 8a88f60d26c1
                 }
             }
 
@@ -41,7 +41,7 @@ pipeline {
         always {
             node('master') { 
                 sh 'echo always'
-                sh 'hostname'
+                sh 'hostname'     // s17
             }
         }
 //        changed {
