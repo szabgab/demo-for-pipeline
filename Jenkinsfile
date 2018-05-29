@@ -37,6 +37,7 @@ pipeline {
         always {
             sh 'echo always'
             sh 'id'
+            sh 'ls -la'
             sh 'uname -a'
         }
         changed {
