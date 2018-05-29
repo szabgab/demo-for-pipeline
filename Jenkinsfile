@@ -4,8 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'build'
-                sh 'echo build'
-                sh 'pwd'
+                pwd()
                 sh 'id'
                 sh 'uname -a'
             }
