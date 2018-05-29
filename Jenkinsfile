@@ -9,8 +9,9 @@ pipeline {
             }
             steps {
                 echo 'test'
-                sh 'python3 --version'
-                sh 'pip install -r requirements.txt'
+                sh 'sudo apt-get install python3'
+                //sh 'python3 --version'
+                //sh 'pip install -r requirements.txt'
             }
         }
     }
