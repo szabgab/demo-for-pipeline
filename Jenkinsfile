@@ -2,12 +2,15 @@ pipeline {
     agent none
     stages {
         stage('build') {
-            agent { dockerfile true }
+            agent {
+                dockerfile true
+                args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+            }
             steps {
                 echo 'test'
                 sh 'python3 --version'
                 sh 'pip install -r requirements.txt'
-                sh 'pytest' //  --junitxml=/store/test-results/$BUILD_NUMBER.xml'
+                sh 'pytest --junitxml=/store/test-results/$BUILD_NUMBER.xml'
             }
         }
     }
