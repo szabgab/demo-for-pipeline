@@ -28,7 +28,7 @@ pipeline {
                     sh 'uname -a'
                     sh 'ls -al'
                     sh 'ls -al test-results/'
-                    junit '**/test-results/*.xml'
+                    //junit 'test-results/*.xml'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
@@ -54,6 +54,12 @@ pipeline {
             sh 'pwd'
             sh 'id'
             sh 'uname -a'
+            dir("${env.WORKSPACE}@libs") {
+                deleteDir()
+            }
+            dir("${env.WORKSPACE}@script") {
+               deleteDir()
+            }
         }
     }
 }
