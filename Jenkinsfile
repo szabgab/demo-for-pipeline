@@ -2,15 +2,10 @@ pipeline {
     agent none
     stages {
         stage('build') {
-            agent {
-                docker {
-                    image 'ubuntu:latest'
-                }
-            }
+            agent { dockerfile true }
             steps {
                 echo 'test'
-                sh 'sudo apt-get install python3'
-                //sh 'python3 --version'
+                sh 'python3 --version'
                 //sh 'pip install -r requirements.txt'
             }
         }
