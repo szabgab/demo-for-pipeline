@@ -31,7 +31,7 @@ pipeline {
                     sh 'uname -a'
                     sh 'ls -al'
                     //sh 'ls -al test-results/'
-                    //junit '/store/test-results/*.xml'
+                    junit '/store/test-results/*.xml'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
