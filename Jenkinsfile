@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('build') {
             agent {
-                dockerfile true
-                args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+                dockerfile {
+                    args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+                }
             }
             steps {
                 echo 'test'
