@@ -31,7 +31,7 @@ pipeline {
                     sh 'uname -a'
                     sh 'ls -al'
                     //sh 'ls -al test-results/'
-                    junit '/store/test-results/*.xml'
+                    //junit '/store/test-results/*.xml'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
@@ -59,17 +59,17 @@ pipeline {
             sh 'uname -a'
             pwd()
             //sh 'echo WORKSPACE=$WORKSPACE'
-            sh 'rm -rf $WORKSPACE@*'
+            //sh 'rm -rf $WORKSPACE@*'
             //echo("${env.WORKSPACE}")
-            //dir("${env.WORKSPACE}@2") {
-            //    deleteDir()
-            //}
-            //dir("${env.WORKSPACE}@2@tmp") {
-            //    deleteDir()
-            //}
-            //dir("${env.WORKSPACE}@tmp") {
-            //    deleteDir()
-            //}
+            dir("${env.WORKSPACE}@2") {
+                deleteDir()
+            }
+            dir("${env.WORKSPACE}@2@tmp") {
+                deleteDir()
+            }
+            dir("${env.WORKSPACE}@tmp") {
+                deleteDir()
+            }
         }
     }
 }
