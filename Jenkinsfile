@@ -5,8 +5,8 @@ pipeline {
             agent {
                 docker {
                     image 'python'
-                    args '-u root:sudo -v /var/lib/jenkins/store/demo-for-pipeline/:/store'
-                    //args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+                    //args '-u root:sudo -v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+                    args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
                 }
             }
             steps {
