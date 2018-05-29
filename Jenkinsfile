@@ -39,16 +39,18 @@ pipeline {
     }
     post {
         always {
-            sh 'echo always'
-            sh 'hostname'
+            node('master') { 
+                sh 'echo always'
+                sh 'hostname'
+            }
         }
-        changed {
-            sh 'echo changed'
-            sh 'hostname'
-        }
-        cleanup {
-            sh 'echo cleanup'
-            sh 'hostname'
-        }
+//        changed {
+//            sh 'echo changed'
+//            sh 'hostname'
+//        }
+//        cleanup {
+//            sh 'echo cleanup'
+//            sh 'hostname'
+//        }
     }
 }
