@@ -56,10 +56,19 @@ pipeline {
             sh 'uname -a'
             pwd()
             echo("${env.WORKSPACE}")
-            sh 'rm -rf ${env.WORKSPACE}@*'
-            //dir("${env.WORKSPACE}@*") {
-            //    deleteDir()
-            //}
+            //sh 'rm -rf ${env.WORKSPACE}@*'
+            dir("${env.WORKSPACE}@2") {
+                deleteDir()
+            }
+            dir("${env.WORKSPACE}@2@tmp") {
+                deleteDir()
+            }
+            dir("${env.WORKSPACE}@tmp") {
+                deleteDir()
+            }
+        }
+    }
+}
         }
     }
 }
