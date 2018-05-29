@@ -11,10 +11,7 @@ pipeline {
             steps {
                 sh 'echo build'
                 sh 'pwd'
-                //sh 'ln -s /store/test-results'
-                //sh 'ln -s /store/artifacts'
                 sh 'ls -al'
-                //sh 'ls -al test-results/'
                 sh 'id'
                 sh 'uname -a'
                 sh '/usr/bin/python --version'
