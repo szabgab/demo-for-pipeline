@@ -12,7 +12,6 @@ pipeline {
                 sh 'echo build'
                 sh 'pwd'
                 sh 'ln -s /store/test-results'
-                sh 'ln -s /store/artifacts'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
                 sh 'id'
@@ -41,6 +40,7 @@ pipeline {
                 sh 'id'
                 sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
                 sh 'echo $DATE'
+                sh 'ln -s /store/artifacts'
                 sh 'ls -al'
                 sh 'tar czf artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
