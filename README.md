@@ -31,16 +31,6 @@ ln -s /home/gabor/work/demo-for-pipeline/uwsgi/demo.ini /etc/uwsgi/apps-enabled/
 ```
 
 
-        stage('deploy') {
-            agent { label 'labelName' }
-            steps {
-                sh 'echo deploy'
-                sh 'id'
-                sh 'cd /home/gabor/work/demo-for-pipeline'
-                sh '/usr/bin/git pull'
-                sh 'sudo /usr/sbin/service uwsgi reload'
-            }
-        }
     }
     post {
     }

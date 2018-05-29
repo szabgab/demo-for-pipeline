@@ -37,6 +37,16 @@ pipeline {
                 }
             }
         }
+        stage('deploy') {
+            agent { label 'master' }
+            steps {
+                sh 'echo deploy'
+                sh 'id'
+                sh 'cd /home/gabor/work/demo-for-pipeline'
+                sh '/usr/bin/git pull'
+                sh 'sudo /usr/sbin/service uwsgi reload'
+            }
+        }
     }
     post {
         always {
