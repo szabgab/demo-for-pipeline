@@ -58,17 +58,18 @@ pipeline {
             sh 'id'
             sh 'uname -a'
             pwd()
-            sh 'echo WORKSPACE=$WORKSPACE'
-            echo("${env.WORKSPACE}")
-            dir("${env.WORKSPACE}@2") {
-                deleteDir()
-            }
-            dir("${env.WORKSPACE}@2@tmp") {
-                deleteDir()
-            }
-            dir("${env.WORKSPACE}@tmp") {
-                deleteDir()
-            }
+            //sh 'echo WORKSPACE=$WORKSPACE'
+            sh 'rm -rf $WORKSPACE@*'
+            //echo("${env.WORKSPACE}")
+            //dir("${env.WORKSPACE}@2") {
+            //    deleteDir()
+            //}
+            //dir("${env.WORKSPACE}@2@tmp") {
+            //    deleteDir()
+            //}
+            //dir("${env.WORKSPACE}@tmp") {
+            //    deleteDir()
+            //}
         }
     }
 }
