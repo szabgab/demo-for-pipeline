@@ -12,6 +12,7 @@ pipeline {
                 sh 'echo build'
                 sh 'pwd'
                 sh 'ln -s /store/test-results'
+                sh 'ln -s /store/artifacts'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
                 sh 'id'
@@ -19,6 +20,10 @@ pipeline {
                 sh '/usr/bin/python --version'
                 sh 'pip install -r requirements.txt'
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
+
+                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
+                sh 'echo $DATE'
+                sh 'tar czf /store/artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
             post {
                 always {
@@ -32,17 +37,6 @@ pipeline {
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
-            }
-        }
-        stage('release') {
-            agent any
-            steps {
-                sh 'id'
-                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
-                sh 'echo $DATE'
-                sh 'ln -s /store/artifacts'
-                sh 'ls -al'
-                sh 'tar czf /store/artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
     }
