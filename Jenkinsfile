@@ -41,6 +41,7 @@ pipeline {
                 sh 'id'
                 sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
                 sh 'echo $DATE'
+                sh 'ls -al'
                 sh 'tar czf artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
