@@ -12,6 +12,7 @@ pipeline {
                 sh 'echo build'
                 sh 'pwd'
                 sh 'ln -s /store/test-results'
+                sh 'ln -s /store/artifacts'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
                 sh 'id'
@@ -32,6 +33,15 @@ pipeline {
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
+            }
+        }
+        stage('release') {
+            agent any
+            steps {
+                sh 'id'
+                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
+                sh 'echo $DATE'
+                sh 'tar czf artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
     }
@@ -56,7 +66,6 @@ pipeline {
             sh 'uname -a'
             pwd()
             echo("${env.WORKSPACE}")
-            //sh 'rm -rf ${env.WORKSPACE}@*'
             dir("${env.WORKSPACE}@2") {
                 deleteDir()
             }
