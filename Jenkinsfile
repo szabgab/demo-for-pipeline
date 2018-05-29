@@ -21,9 +21,7 @@ pipeline {
                 sh 'pip install -r requirements.txt'
                 sh 'pytest --junitxml=test-results/$BUILD_NUMBER.xml'
 
-                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`'
-                sh 'echo $DATE'
-                sh 'tar czf /store/artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
+                sh 'DATE=`date "+%Y-%m-%d--%H-%M-%S"`; tar czf /store/artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
             post {
                 always {
