@@ -10,6 +10,7 @@ pipeline {
             }
             steps {
                 sh 'echo build'
+                sh 'pwd'
                 sh 'ln -s /store/test-results'
                 sh 'ls -al'
                 sh 'ls -al test-results/'
@@ -22,11 +23,12 @@ pipeline {
             post {
                 always {
                     sh 'echo always after build'
+                    sh 'pwd'
                     sh 'id'
                     sh 'uname -a'
                     sh 'ls -al'
                     sh 'ls -al test-results/'
-                    junit './test-results/*.xml'
+                    junit '**/test-results/*.xml'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
@@ -36,17 +38,20 @@ pipeline {
     post {
         always {
             sh 'echo always'
+            sh 'pwd'
             sh 'id'
             sh 'ls -la'
             sh 'uname -a'
         }
         changed {
             sh 'echo changed'
+            sh 'pwd'
             sh 'id'
             sh 'uname -a'
         }
         cleanup {
             sh 'echo cleanup'
+            sh 'pwd'
             sh 'id'
             sh 'uname -a'
         }
