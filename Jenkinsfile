@@ -6,6 +6,7 @@ pipeline {
                 docker {
                     image 'python'
                     args '-u root:sudo -v /var/lib/jenkins/store/demo-for-pipeline/:/store'
+                    //args '-v /var/lib/jenkins/store/demo-for-pipeline/:/store'
                 }
             }
             steps {
@@ -43,8 +44,7 @@ pipeline {
             steps {
                 sh 'echo deploy'
                 sh 'id'
-                sh 'cd /home/gabor/work/demo-for-pipeline'
-                sh '/usr/bin/git pull'
+                sh 'cd /home/gabor/work/demo-for-pipeline; /usr/bin/git pull'
                 sh 'sudo /usr/sbin/service uwsgi reload'
             }
         }
