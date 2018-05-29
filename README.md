@@ -60,22 +60,6 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-          node('awesome_node_label') {
-            sh 'id'
-            archiveArtifacts artifacts: '*.gz'
-            junit 'test-results/*.xml'
-          }
-        }
-        cleanup {
-          node('awesome_node_label') {
-            sh 'id'
-            sh 'rm -rf .pytest_cache/'
-            sh 'rm -rf __pycache__/'
-            sh 'rm -rf tests/__pycache__/'
-            sh 'rm -f *.pyc'
-          }
         }
     }
 }

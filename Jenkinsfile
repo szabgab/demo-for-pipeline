@@ -32,6 +32,7 @@ pipeline {
                     sh 'ls -al'
                     //sh 'ls -al test-results/'
                     //junit '/store/test-results/*.xml'
+                    //archiveArtifacts artifacts: '/store/artifacts/*.gz'
                     sh 'git clean -fdx'
                     sh 'ls -al'
                 }
@@ -80,6 +81,11 @@ pipeline {
             dir("${env.WORKSPACE}@tmp") {
                 deleteDir()
             }
+
+            // sh 'rm -rf .pytest_cache/'
+            // sh 'rm -rf __pycache__/'
+            // sh 'rm -rf tests/__pycache__/'
+            // sh 'rm -f *.pyc'
         }
     }
 }
