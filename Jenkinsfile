@@ -54,7 +54,7 @@ pipeline {
             sh 'pwd'
             sh 'id'
             sh 'uname -a'
-            pwd
+            pwd()
             echo("${env.WORKSPACE}")
             sh 'rm -rf ${env.WORKSPACE}@*'
             //dir("${env.WORKSPACE}@*") {
