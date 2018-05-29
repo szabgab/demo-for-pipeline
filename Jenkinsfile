@@ -9,6 +9,7 @@ pipeline {
                 sh 'id'       // uid=112(jenkins) gid=117(jenkins) groups=117(jenkins),118(docker)
                 sh 'uname -a' // Linux s17 4.13.0-43-generic #48-Ubuntu SMP Wed May 16 12:18:48 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
             }
+        }
         stage('test') {
             agent {
                 docker {
@@ -21,7 +22,6 @@ pipeline {
                 sh 'id'       // uid=112(jenkins) gid=117(jenkins) groups=117(jenkins),118(docker)
                 sh 'uname -a' // Linux s17 4.13.0-43-generic #48-Ubuntu SMP Wed May 16 12:18:48 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
             }
-
         }
     }
 }
