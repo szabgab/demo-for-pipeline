@@ -9,7 +9,6 @@ pipeline {
             }
             steps {
                 echo 'test'
-                sh 'python --version'
                 sh 'python3 --version'
                 sh 'pip install -r requirements.txt'
             }
