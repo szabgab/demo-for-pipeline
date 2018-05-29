@@ -42,7 +42,7 @@ pipeline {
                 sh 'echo $DATE'
                 sh 'ln -s /store/artifacts'
                 sh 'ls -al'
-                sh 'tar czf artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
+                sh 'tar czf /store/artifacts/release-$DATE-$GIT_COMMIT.gz demo.py templates/'
             }
         }
     }
